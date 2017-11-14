@@ -15,8 +15,9 @@ class CreateAnswer extends Migration
     {
         Schema::create('answer', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('question_id');
             $table->string('answer');
-            $table->boolean('correct');
+            $table->boolean('is_correct');
             $table->timestamps();
         });
     }

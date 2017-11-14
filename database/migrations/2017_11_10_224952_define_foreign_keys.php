@@ -17,8 +17,7 @@ class DefineForeignKeys extends Migration
            $table->foreign('user_id')->references('id')->on('user');
         });
 
-        Schema::table('question_answer', function (Blueprint $table) {
-            $table->foreign('answer_id')->references('id')->on('answer');
+        Schema::table('answer', function (Blueprint $table) {
             $table->foreign('question_id')->references('id')->on('question');
         });
     }
@@ -34,9 +33,7 @@ class DefineForeignKeys extends Migration
             $table->dropForeign(['user_id']);
         });
 
-        Schema::table('question_answer', function (Blueprint $table) {
-            //Muszáj külön tömbben, különben nem jó a drop.
-            $table->dropForeign(['answer_id']);
+        Schema::table('answer', function (Blueprint $table) {
             $table->dropForeign(['question_id']);
         });
     }
