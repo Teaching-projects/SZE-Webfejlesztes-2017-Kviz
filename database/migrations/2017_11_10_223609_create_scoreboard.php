@@ -7,7 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateScoreboard extends Migration
 {
     /**
-     * Eredménytábla.
+     * Az eredményeket tartalmazó tábla.
      *
      * @return void
      */

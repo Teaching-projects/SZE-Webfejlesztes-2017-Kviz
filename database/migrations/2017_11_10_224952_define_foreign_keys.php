@@ -7,7 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class DefineForeignKeys extends Migration
 {
     /**
-     * Run the migrations.
+     * A távoli kulcsok beállítása.
      *
      * @return void
      */
