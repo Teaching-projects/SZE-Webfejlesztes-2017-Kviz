@@ -11,6 +11,6 @@ class Scoreboard extends Model
     public $table = "scoreboard";
 
     public function user(){
-        return $this->belongsTo(User::class,'user_id',id,Scoreboard::class);
+        return $this->belongsTo(User::class,'user_id','id',Scoreboard::class);
     }
 }
