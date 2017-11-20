@@ -11,6 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Main@index');
+Route::get('ranglista', 'Main@scoreboard');
