@@ -14,7 +14,7 @@ class Main extends Controller
 
     //Eredménytábla view kiszolgálása
     public function scoreboard(){
-        $scores = Scoreboard::orderBy('score','desc')->orderBy('score')->get();
+        $scores = Scoreboard::orderBy('score','desc')->get();
         return view('scoreboard')->with(['scores' => $scores]);
     }
 }
