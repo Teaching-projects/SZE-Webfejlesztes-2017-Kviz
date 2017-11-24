@@ -26,10 +26,38 @@
                 <li><a href="/">Kezdőlap</a></li>
                 <li><a href="/ranglista">Ranglista</a></li>
             </ul>
+            <ul class="nav navbar-nav navbar-right">
+                @guest
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Bejelentkezés <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/bejelentkezes">Bejelentkezés</a></li>
+                            <li><a href="/regisztracio">Regisztráció</a></li>
+                        </ul>
+                    </li>
+                @endguest
+                @auth
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{Auth::user()->name}}<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/kijelentkezes">Kijelentkezés</a></li>
+                            </ul>
+                        </li>
+                @endauth
+            </ul>
         </nav>
     </div>
 </header>
 <div class="container bs-docs-container master-container">
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     @yield('content')
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
