@@ -22,6 +22,12 @@ class Main extends Controller
         return view('scoreboard')->with(['scores' => $scores]);
     }
 
+    //Játék view kiszolgálása
+    public function game(){
+        Game::resetGame();
+        return view('game')->with(['quiz_length' => config('app.quiz_length'), 'answer_timeout' => config('app.answer_timeout')]);
+    }
+
     //Regisztálció view kiszolgálása
     public function registration(){
         return view('registration');
@@ -66,5 +72,9 @@ class Main extends Controller
     public function logout(){
         Auth::logout(); //Kijelentkeztetés
         return redirect('/'); //Visszairányítás a kezdőlapra
+    }
+
+    public static function gameIsEnd(){
+        return config('app.end_date') < date('Y-m-d');
     }
 }

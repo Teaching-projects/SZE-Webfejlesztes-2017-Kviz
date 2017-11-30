@@ -228,4 +228,7 @@ return [
 
     ],
 
+    'end_date' => '2017-12-27',
+    'quiz_length' => 3,
+    'answer_timeout' => 15,
 ];

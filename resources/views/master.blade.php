@@ -7,6 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Quiz</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/app.css" />
     @yield('head')
 </head>
 <body>
@@ -24,6 +25,7 @@
         <nav class="collapse navbar-collapse bs-navbar-collapse">
             <ul class="nav navbar-nav">
                 <li><a href="/">Kezdőlap</a></li>
+                @auth <li><a href="/jatek">Új játék</a></li> @endauth
                 <li><a href="/ranglista">Ranglista</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -62,6 +64,7 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/app.js"></script>
 @yield('footer')
 </body>
 </html>

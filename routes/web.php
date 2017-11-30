@@ -24,5 +24,13 @@ Route::group(['middleware' => ['guest']], function () {
 
 //Ha nincs bejelentkezve akkor a bejelentkezésre irányít
 Route::group(['middleware' => ['auth']], function () {
+
+    Route::group(['middleware' => ['gameend']], function () {
+        Route::get('jatek', 'Main@game');
+        Route::get('keredes','Game@getQuestion');
+        Route::post('valasz','Game@processAnswer');
+        Route::get('ranglistara','Scoreboard@add');
+    });
+
     Route::get('kijelentkezes', 'Main@logout');
 });
