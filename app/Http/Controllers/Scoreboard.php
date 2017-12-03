@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\Auth;
 class Scoreboard extends Controller
 {
     public function add(Request $request){
-        $score = new \App\Persistence\Model\Scoreboard();
-        $score->score = session('point');
-        $score->user_id = Auth::user()->id;
-        $score->save();
+        //Pontszám mentése az aktuális userhez https://laravel.com/docs/5.5/eloquent-relationships#the-create-method
+        Auth::user()->scores()->create([
+            'score' => session('point')
+        ]);
     }
 }
