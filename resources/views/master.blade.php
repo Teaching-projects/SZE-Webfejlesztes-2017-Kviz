@@ -27,6 +27,7 @@
                 <li><a href="/">Kezdőlap</a></li>
                 @auth <li><a href="/jatek">Új játék</a></li> @endauth
                 <li><a href="/ranglista">Ranglista</a></li>
+                @if(\Illuminate\Support\Facades\Auth::check() && \Illuminate\Support\Facades\Auth::user()->is_admin) <li><a href="/admin">Admin</a></li> @endif
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 @guest
@@ -58,6 +59,11 @@
                     <li>{{ $error }}</li>
                 @endforeach
             </ul>
+        </div>
+    @endif
+    @if(session()->has('message'))
+        <div class="alert alert-success">
+            {{ session()->get('message') }}
         </div>
     @endif
     @yield('content')

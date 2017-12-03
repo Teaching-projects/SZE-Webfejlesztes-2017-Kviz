@@ -51,9 +51,10 @@ class Main extends Controller
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->password = Hash::make($request->input('password'));
+        $user->is_active = false;
+        $user->is_admin = false;
         $user->save(); //Felhasználó mentése az adatbázisba
-        Auth::login($user); //Felhasználó bejelentkeztetése
-        return redirect('/'); //Visszairányítás a kezdőlapra
+        return redirect('/')->with('message', 'Sikeres regisztálció! Az admin jóváhagyása után értesítést kapsz.'); //Visszairányítás a kezdőlapra üzenettel: https://stackoverflow.com/questions/37376168/laravel-5-2-redirect-back-with-success-message
     }
 
     public function login(){
@@ -62,7 +63,12 @@ class Main extends Controller
 
     public function processLogin(Request $request){
         if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password')])) {
-            return redirect('/'); //Sikeres bejekentkezés esetén vissza a főoldalra
+            if(!Auth::user()->is_active){
+                Auth::logout();
+                return back()->withErrors(['message' => 'A jelentkezésed elbírálásra vár. Az admin jóváhagyása után értesítést kapsz.']);
+            }
+            else
+                return redirect('/'); //Sikeres bejekentkezés esetén vissza a főoldalra
         }
         else{
             return back()->withErrors(['message' => 'Hibás felhasználónév vagy jelszó.']);

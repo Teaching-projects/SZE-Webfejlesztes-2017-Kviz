@@ -32,5 +32,11 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('ranglistara','Scoreboard@add');
     });
 
+    Route::group(['middleware' => ['admin']], function () {
+        Route::get('admin', 'Admin@admin');
+        Route::get('admin/acceptance-user/{id}', 'Admin@acceptanceUser');
+        Route::get('admin/rejection-user/{id}', 'Admin@rejectionUser');
+    });
+
     Route::get('kijelentkezes', 'Main@logout');
 });

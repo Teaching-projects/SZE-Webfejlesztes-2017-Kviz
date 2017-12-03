@@ -58,5 +58,6 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'gameend' => \App\Http\Middleware\RedirectIfGameEnd::class,
+        'admin' => \App\Http\Middleware\CheckAdmin::class,
     ];
 }

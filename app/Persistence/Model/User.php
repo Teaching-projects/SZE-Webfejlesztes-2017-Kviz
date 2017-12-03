@@ -27,6 +27,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    protected $casts = [
+        'is_active' => 'boolean',
+        'is_admin' => 'boolean',
+    ];
+
     public function scores(){
         return $this->hasMany(Scoreboard::class,'user_id','id', User::class);
     }
